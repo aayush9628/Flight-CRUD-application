@@ -1,0 +1,24 @@
+<h1>All Booked Flights</h1>
+<table>
+    <thead>
+        <tr>
+            <td>Flight ID</td>
+            <td>Flight Name</td>
+            <td>Source</td>
+            <td>Destination</td>
+            <td>Fare</td>
+            <td>Delete Booking</td>
+        </tr>
+    </thead>
+    <tbody *ngFor="let flight of flights">
+        <tr>
+            <td>{{flight.id}}</td>
+            <td>{{flight.flightName}}</td>
+            <td>{{flight.source}}</td>
+            <td>{{flight.destination}}</td>
+            <td>{{flight.fare}}</td>
+            <td><button (click)="deleteBooking(flight.id)">Delete</button></td>
+        </tr>
+    </tbody>
+</table>
+<button (click)="goBackToHome()">Back</button>

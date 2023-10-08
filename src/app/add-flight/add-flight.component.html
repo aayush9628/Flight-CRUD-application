@@ -1,0 +1,34 @@
+<p>Flight addition form</p>
+<button (click) = "backToHome()">Back</button>
+<form #userForm="ngForm">
+    <div class="form-group">
+        <label>Enter Flight Name:</label><br>
+        <input type="text" [(ngModel)]="flightModel.flightName" name="flightName" class="form-control" #flightName="ngModel" [ngClass]="{'is-invalid': userForm.submitted && flightName.invalid}" required/>
+        <div *ngIf="userForm.submitted && flightName.invalid" class="invalid-feedback">
+            <div *ngIf="flightName.errors?.['required']">Flight name is required.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Enter Source:</label><br>
+        <input type="text" [(ngModel)]="flightModel.source" name="source" class="form-control" #source="ngModel" [ngClass]="{'is-invalid': userForm.submitted && source.invalid}" required/>
+        <div *ngIf="userForm.submitted && source.invalid" class="invalid-feedback">
+            <div *ngIf="source.errors?.['required']">Source is required.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Enter Destination:</label><br>
+        <input type="text" [(ngModel)]="flightModel.destination" name="destination" class="form-control" #destination="ngModel" [ngClass]="{'is-invalid': userForm.submitted && destination.invalid}" required/>
+        <div *ngIf="userForm.submitted && destination.invalid" class="invalid-feedback">
+            <div *ngIf="destination.errors?.['required']">Destination is required.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Enter Fare:</label><br>
+        <input type="number" [(ngModel)]="flightModel.fare" name="fare" class="form-control" #fare="ngModel" [ngClass]="{'is-invalid': userForm.submitted && fare.invalid}" required/>
+        <div *ngIf="userForm.submitted && fare.invalid" class="invalid-feedback">
+            <div *ngIf="fare.errors?.['required']">Fare is required.</div>
+        </div>
+    </div>
+    
+    <button [disabled]="userForm.invalid" (click) = "onSubmit()" type="button" class="btn btn-outline-primary btn-rounded" mdbRipple rippleColor="dark">Submit</button><br>
+</form>

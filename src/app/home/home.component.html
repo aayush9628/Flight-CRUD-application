@@ -1,0 +1,48 @@
+<button (click)="logout()">Logout</button><br>
+<button (click)="bookedFlights()">Booked Flights</button>
+<div *ngIf="page === 1">
+    <h1>All Flights</h1>
+    <table>
+        <thead>
+            <tr>
+                <td>Flight ID</td>
+                <td>Flight Name</td>
+                <td>Source</td>
+                <td>Destination</td>
+                <td>Fare</td>
+                <td>User Driven operations</td>
+            </tr>
+        </thead>
+        <tbody *ngFor="let flight of flights">
+            <tr>
+                <td>{{flight.id}}</td>
+                <td>{{flight.flightName}}</td>
+                <td>{{flight.source}}</td>
+                <td>{{flight.destination}}</td>
+                <td>{{flight.fare}}</td>
+                <td><button (click)="updateFlight(flight.id)">Update</button> | <button (click)="deleteFlight(flight.id)">Delete</button> | <button (click)="bookFlight(flight.id)">Book</button></td>
+            </tr>
+        </tbody>
+    </table>
+
+    <button (click)="addFlight()">Add flight</button>
+</div>
+<div *ngIf="page === 2">
+    <app-add-flight (page)="pageSelection($event)" (flightDetails)="addFlightModelFetch($event)"></app-add-flight>
+</div>
+<div *ngIf="page === 3">
+    <app-book-flight (page)="pageSelection($event)" [bookFlightDetails]="bookFlightModel"></app-book-flight>
+</div>
+<div *ngIf="page === 4">
+    <app-update-flight [flightId]="updateId" (page)="pageSelection($event)" (formValues)="updateFlightModelFetch($event)"></app-update-flight>
+</div>
+<div *ngIf="page === 5">
+    <app-booking-list (page)="pageSelection($event)"></app-booking-list>
+</div>
+<!-- <form>
+    <label>Enter product name:</label><br>
+    <input type="text" [(ngModel)]="flightName" name="flightName"/><br>
+    <label>Enter product price:</label><br>
+    <input type="number" [(ngModel)]="" name="price"/><br>
+    <button (click)="createProduct()">Add Product</button><br>
+</form> -->

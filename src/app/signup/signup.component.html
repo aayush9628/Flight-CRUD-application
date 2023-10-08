@@ -1,0 +1,22 @@
+<p>Signup Page</p>
+<form #userForm="ngForm">
+    <div class="form-group">
+        <label>Enter User ID:</label><br>
+        <input type="text" [(ngModel)]="signupModel.userName" name="userName" class="form-control" #userName="ngModel" [ngClass]="{'is-invalid': userForm.submitted && userName.invalid}" required/>
+        <div *ngIf="userForm.submitted && userName.invalid" class="invalid-feedback">
+            <div *ngIf="userName.errors?.['required']">User ID is required.</div>
+        </div>
+    </div>
+    <div class="form-group">
+        <label>Enter Password:</label><br>
+        <input type="password" [(ngModel)]="signupModel.password" name="password" class="form-control" #password="ngModel" [ngClass]="{'is-invalid': userForm.submitted && password.invalid}" minlength="8" required/>
+        <div *ngIf="userForm.submitted && password.invalid" class="invalid-feedback">
+            <div *ngIf="password.errors?.['required']">Password is required.</div>
+            <div *ngIf="password.errors?.['minlength']">Minimum length should be at least 8 characters.</div>
+        </div>
+    </div>
+    
+    <button [disabled]="userForm.invalid" (click) = "onSubmit()" type="button" class="btn btn-outline-primary btn-rounded" mdbRipple rippleColor="dark">Submit</button><br>
+</form>
+<label>Already have an account?</label>
+<button (click)="goToLogin()">Login Page</button>
